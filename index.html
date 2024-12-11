@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>富山観光地クイズ</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMG4zj-7e60Fx6ikt6s_onmBTT0wASJ4E"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    #game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    #title-screen, #game-screen, #map-screen, #result-screen, #final-score-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+    #map, #result-map {
+      width: 150%;
+      height: 70vh;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    img {
+      max-width: 80%;
+      max-height: 60vh;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="game-container">
+  <!-- タイトル画面 -->
+  <div id="title-screen">
+    <h1>富山観光地クイズ</h1>
+    <button onclick="showRules()">ルール説明</button>
+    <button onclick="startGame()">ゲームスタート</button>
+  </div>
+
+  <!-- ルール説明画面 -->
+  <div id="rules-screen">
+    <h2>ルール説明</h2>
+    <p>画面に表示される画像がどの位置で撮影されたかを推理してください。地図をクリックして座標を選択し、結果を確認しましょう！</p>
+    <p>
+     <font color="#C71585">《回答の際のヒント》</font><br />
+       画像に写っている場所をそのまま回答するのではなく、撮影者がどの位置から撮影したかを推測し、回答すると、よりスコアが高くなります。背景などをヒントに撮影場所を推測しましょう。</p>
+    <button onclick="goToTitle()">戻る</button>
+  </div>
+
+  <!-- ゲーム画面 -->
+  <div id="game-screen">
+    <h2>第 <span id="round-number"></span>/10問</h2>
+    <img id="random-image" src="" alt="ランダム画像">
+    <button onclick="goToMap()">地図を表示</button>
+  </div>
+
+  <!-- 地図画面 -->
+  <div id="map-screen">
+    <h2>写真の位置を推理してください</h2>
+    <div id="map"></div>
+    <button onclick="submitGuess()">回答</button>
+  </div>
+
+  <!-- 結果画面 -->
+  <div id="result-screen">
+    <h2>結果発表</h2>
+    <p id="result-text"></p>
+    <div id="result-map"></div>
+    <button onclick="nextRound()">次へ</button>
+  </div>
+
+  <!-- 最終スコア画面 -->
+  <div id="final-score-screen">
+    <h2>ゲーム終了！</h2>
+    <p id="final-score-text"></p>
+    <button onclick="restartGame()">再挑戦</button>
+  </div>
+</div>
+
+<script src="script3.js"></script>
+</body>
+</html>
